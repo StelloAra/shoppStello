@@ -17,6 +17,7 @@ $dotenv->load();
             $dsn = "mysql:host=$host:$PORT;dbname=$db";
             $this->pdo = new PDO($dsn, $user, $pass);
             $this->initDatabase();
+            $this->addColumn();
 
         }
 
@@ -39,11 +40,11 @@ $dotenv->load();
 
         function updateProduct($product){
             $s = "UPDATE Products SET title = :title," .
-                " price = :price, stockLevel = :stockLevel, categoryName = :categoryName WHERE id = :id";
+                " price = :price, stockLevel = :stockLevel, categoryName = :categoryName, popularity = :popularity WHERE id = :id";
             $query = $this->pdo->prepare($s);
             $query->execute(['title' => $product->title, 'price' => $product->price,
                 'stockLevel' => $product->stockLevel, 'categoryName' => $product->categoryName, 
-                'id' => $product->id]);
+                'id' => $product->id, 'popularity' => $product->popularity,]);
         }
 
         function deleteProduct($id){
@@ -70,8 +71,8 @@ $dotenv->load();
 
         function getCategoryProducts($catName){
             if($catName == ""){
-                $query = $this->pdo->query("SELECT * FROM Products"); // Products är TABELL 
-                return $query->fetchAll(PDO::FETCH_CLASS, 'Product'); // Product är PHP Klass
+                $query = $this->pdo->query("SELECT * FROM Products");
+                return $query->fetchAll(PDO::FETCH_CLASS, 'Product'); 
             }
             $query = $this->pdo->prepare("SELECT * FROM Products WHERE categoryName = :categoryName");
             $query->execute(['categoryName' => $catName]);
@@ -80,6 +81,19 @@ $dotenv->load();
         function getAllCategories(){
             $data = $this->pdo->query('SELECT DISTINCT categoryName FROM Products')->fetchAll(PDO::FETCH_COLUMN);
             return $data;
+        }
+
+        function columnExists($table, $column){
+            $query = $this->pdo->prepare("SHOW COLUMNS  FROM $table LIKE :column");
+            $query->execute(['column' => $column]);
+            return $query->rowCount() > 0;
+        }
+
+        function addColumn() {
+            if($this->columnExists("Products","popularity")){
+                return;
+            }
+            $query = $this->pdo->query('ALTER TABLE Products ADD COLUMN popularity int default 0');
         }
 
     }

@@ -25,7 +25,7 @@ $sortOrder = $_GET['sortOrder'] ?? "";
     </head>
     <body>
         <?php Nav(); ?>
-        <?php Feader(); ?>
+        <?php Feader("Admin"); ?>
 
         <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
@@ -52,6 +52,11 @@ $sortOrder = $_GET['sortOrder'] ?? "";
                             Stock level
                         <a href="/admin/products?sortCol=stockLevel&sortOrder=desc"><i class="bi bi-arrow-up-circle-fill"></i></a>
                         </th>
+                        <th>
+                        <a href="/admin/products?sortCol=popularity&sortOrder=asc"><i class="bi bi-arrow-down-circle-fill"></i></a>
+                            Popularity
+                        <a href="/admin/products?sortCol=popularity&sortOrder=desc"><i class="bi bi-arrow-up-circle-fill"></i></a>
+                        </th>
                         <th>action</th>
                 </thead>
 
@@ -64,6 +69,7 @@ $sortOrder = $_GET['sortOrder'] ?? "";
                         <td><?php echo $prod->categoryName; ?></td>
                         <td><?php echo $prod->price; ?></td>
                         <td><?php echo $prod->stockLevel; ?></td>
+                        <td><?php echo $prod->popularity; ?></td>
                         <td>
                           <a href="edit?id=<?php echo $prod->id; ?>" class="btn btn-primary">Edit</a>
                           <a href="delete?id=<?php echo $prod->id; ?>" class="btn btn-danger">Delete</a>

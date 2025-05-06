@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <input type="number" name="price" placeholder="Price" required><br><br>
     <input type="number" name="stockLevel" placeholder="Stocklevel" required><br><br>
     <input type="text" name="categoryName" placeholder="Categori" required><br><br>
+    <input type="number" name="popularity" placeholder="Popularity" required><br><br>
     <input type="submit" placeholder="Skicka"><br><br>
     </form>
 

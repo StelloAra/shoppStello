@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $product->price = $_POST['price'];
     $product->categoryName = $_POST['categoryName'];
+    $product->popularity = $_POST['popularity'];
+
     $dbContext->updateProduct($product);
     header("Location: /admin/products");
     exit;
@@ -55,6 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <div class="form-group">
             <label for="categpryName">Category name:</label>
             <input type="text" class="form-control" name="categoryName" value="<?php echo $product->categoryName ?>">
+        </div>
+        <div class="form-group">
+            <label for="popularity">Popularity:</label>
+            <input type="number" class="form-control" name="popularity" value="<?php echo $product->popularity ?>">
         </div>
         <input type="submit" class="btn btn-primary" value="Uppdatera">
     </form>

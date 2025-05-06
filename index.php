@@ -24,5 +24,8 @@ $router->addRoute('/admin/new', function () {
 $router->addRoute('/admin/delete', function () {
     require_once( __DIR__ .'/pages/delete.php');
 });
+$router->addRoute('/showoneproduct', function () {
+    require_once( __DIR__ .'/pages/showproduct.php');
+});
 
 $router->dispatch();
