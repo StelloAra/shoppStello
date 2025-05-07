@@ -3,6 +3,7 @@ require_once("Models/Product.php");
 require_once("components/Footer.php");
 require_once("components/Nav.php");
 require_once("components/Headern.php");
+require_once("pages/function/SingelProduct.php");
 require_once("Models/Database.php");
 
 $dbContext = new Database();
@@ -31,35 +32,17 @@ $dbContext = new Database();
 
 
     <!-- Header-->
-    <?php Headern("Stello's Shop"); ?>
+    <?php Headern("Stello's Shop" . "" . "<h5>Populära produkter</h5>"); ?>
 
     <!-- Section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <?php
-                foreach ($dbContext->getAllProducts() as $prod) {
-                ?>
-                    <div class="col mb-5">
-                        <a href="/showoneproduct?id=<?php echo $prod->id ?>" class="text-decoration-none text-dark">
+                foreach ($dbContext->getPopularProducts() as $prod) {
 
-                            <div class="card h-100">
-                                <?php if ($prod->price < 10) {  ?>
-                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                                <?php } ?>
-                                <img class="card-img-top" src="assets/th4.jpg" alt="smiley" />
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <h5 class="fw-bolder"><?php echo $prod->title; ?></h5>
-                                        $<?php echo $prod->price; ?>.00
-                                    </div>
-                                </div>
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                                </div>
-                            </div>
-                    </div>
-                <?php } ?>
+                    SingelProduct($prod);
+                } ?>
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Sale badge-->

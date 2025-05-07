@@ -389,6 +389,10 @@ button {
   padding-left: 1rem;
 }
 
+.full-height-section {
+  min-height: 90vh;
+}
+
 button:focus:not(:focus-visible) {
   outline: 0;
 }
