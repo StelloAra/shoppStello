@@ -30,7 +30,7 @@ $catName = $_GET['catname'] ?? "";
 
 
         <!-- Header-->
-        <?php Feader($catName); ?>
+        <?php Headern($catName); ?>
 
         <!-- Section-->
         <section class="py-5">

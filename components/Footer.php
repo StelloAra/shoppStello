@@ -1,9 +1,9 @@
 <?php
 function Footer(){
 ?>
-    <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Shop 2025</p>
-            <p class="m-0 text-center text-white"><a href="/admin/products">Admin</a></p>
+    <footer class="py-5 bg-dark bg-gradient">
+        <div class="container"><p class="m-0 text-center" style="color: cadetblue">Copyright &copy; Your Shop 2025</p>
+            <p class="m-0 text-center"><a href="/admin/products" style="text-decoration: none; color: cyan;">Admin</a></p>
         </div>
     </footer>
             <!-- Bootstrap core JS-->
