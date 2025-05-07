@@ -36,7 +36,7 @@ $product = $dbContext->getProduct($id);
     ?>
 
     <?php if ($product): ?>
-        <section class="py-5">
+        <section class="py-5 bg-dark bg-gradient">
             <div class="container px-4 px-lg-5 my-3">
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6">
@@ -46,14 +46,14 @@ $product = $dbContext->getProduct($id);
                         <?php if ($product->price < 10): ?>
                             <span class="badge bg-dark mb-2">Sale</span>
                         <?php endif; ?>
-                        <h1 class="display-5 fw-bolder"><?php echo $product->title; ?></h1>
-                        <p class="lead"><?php echo $product->description ?? "Du har valt rätt! BRA SMAK !"; ?></p>
+                        <h1 class="display-5 fw-bolder" style="color:darkcyan"><?php echo $product->title; ?></h1>
+                        <p class="lead" style="color:darkcyan"><?php echo $product->description ?? "Du har valt rätt! BRA SMAK !"; ?></p>
                         <div class="fs-5 mb-5">
-                            <span>$<?php echo $product->price; ?>.00</span>
+                            <span style="color:darkcyan">$<?php echo $product->price; ?>.00</span>
                         </div>
                         <form method="post" action="addToCart.php">
                             <input type="hidden" name="product_id" value="<?php echo $product->id; ?>">
-                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                            <button class="btn btn-outline-light flex-shrink-0" style="color:darkcyan" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Lägg i varukorg
                             </button>
