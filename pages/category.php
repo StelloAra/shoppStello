@@ -3,7 +3,7 @@ require_once("Models/Product.php");
 require_once("components/Footer.php");
 require_once("components/Nav.php");
 require_once("components/Headern.php");
-require_once("pages/function/SingelProduct.php");
+require_once("pages/function/SingleProduct.php");
 require_once("Models/Database.php");
 
 $dbContext = new Database();
@@ -46,7 +46,7 @@ if ($catName == "") {
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <?php
                 foreach ($dbContext->getCategoryProducts($catName) as $prod) {
-                    SingelProduct($prod);
+                    SingleProduct($prod);
                 } ?>
                 <div class="col mb-5">
                     <div class="card h-100">

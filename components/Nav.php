@@ -1,11 +1,15 @@
 <?php
 function Nav()
 {
+    $q = $_GET['q'] ?? "";
 ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" style="font-style: italic; color:darkgreen" href="/">Stello's Shop</a>
+            <form action="/search" method="GET">
+                <input type="text" name="q" value="<?php echo $q; ?>" placeholder="Search" class="form-control">
+            </form>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -27,9 +31,7 @@ function Nav()
                     <li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Create account</a></li>
                 </ul>
-                <form action="/search" method="GET">
-                    <input type="text" name="q" placeholder="Search" class="form-control">
-                </form>
+
 
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" type="submit">

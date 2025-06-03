@@ -1,5 +1,5 @@
 <?php
-function SingelProduct($prod)
+function SingleProduct($prod)
 {
 ?>
     <div class="col mb-5">

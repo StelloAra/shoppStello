@@ -3,7 +3,7 @@ require_once("Models/Product.php");
 require_once("components/Footer.php");
 require_once("components/Nav.php");
 require_once("components/Headern.php");
-require_once("pages/function/SingelProduct.php");
+require_once("pages/function/SingleProduct.php");
 require_once("Models/Database.php");
 
 $dbContext = new Database();
@@ -41,7 +41,7 @@ $dbContext = new Database();
                 <?php
                 foreach ($dbContext->getPopularProducts() as $prod) {
 
-                    SingelProduct($prod);
+                    SingleProduct($prod);
                 } ?>
                 <div class="col mb-5">
                     <div class="card h-100">

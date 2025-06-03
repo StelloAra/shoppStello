@@ -1,11 +1,20 @@
 <?php
+require_once('Models/UserDatabase.php');
 require_once("vendor/autoload.php");
+require_once('Models/Category.php');
+require_once('Models/Product.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable(".");
 $dotenv->load();
 class Database
 {
     public $pdo;
+
+    private $usersDatabase;
+    function getUsersDatabase()
+    {
+        return $this->usersDatabase;
+    }
 
     function __construct()
     {
