@@ -2,6 +2,7 @@
 require_once('Models/UserDatabase.php');
 require_once("vendor/autoload.php");
 require_once('Models/Category.php');
+require_once('Models/CartItem.php');
 require_once('Models/Product.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable(".");
@@ -25,10 +26,12 @@ class Database
         $PORT = $_ENV["PORT"];
 
 
-        $dsn = "mysql:host=$host:$PORT;dbname=$db";
+        $dsn = "mysql:host=$host:$PORT;dbname=$db"; // connection string
         $this->pdo = new PDO($dsn, $user, $pass);
         $this->initDatabase();
-        $this->addColumn();
+        $this->usersDatabase = new UserDatabase($this->pdo);
+        $this->usersDatabase->setupUsers();
+        $this->usersDatabase->seedUsers();
     }
 
     function initDatabase()
@@ -40,6 +43,16 @@ class Database
                 stockLevel INT,
                 categoryName VARCHAR(50)
             )');
+
+        $this->pdo->query('CREATE TABLE IF NOT EXISTS CartItem (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                productId INT,
+                quantity INT,
+                addedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                sessionId VARCHAR(50),
+                userId INT NULL,
+                FOREIGN KEY (productId) REFERENCES Products(id) ON DELETE CASCADE
+                )');
     }
 
     function getProduct($id)
@@ -124,5 +137,37 @@ class Database
     {
         $query = $this->pdo->query("SELECT * FROM Products ORDER BY popularity DESC LIMIT 3");
         return $query->fetchAll(PDO::FETCH_CLASS, 'Product');
+    }
+
+    function getCartItems($userId, $sessionId)
+    {
+        if ($userId != null) {
+            $query = $this->pdo->prepare("UPDATE CartItem SET userId=:userId WHERE userId IS NULL AND  sessionId = :sessionId");
+            $query->execute(['sessionId' => $sessionId, 'userId' => $userId]);
+        }
+
+        $query = $this->pdo->prepare("SELECT CartItem.Id as id, CartItem.productId, CartItem.quantity, Products.title as productName, Products.price as productPrice, Products.price * CartItem.quantity as rowPrice     FROM CartItem JOIN Products ON Products.id=CartItem.productId  WHERE userId=:userId or sessionId = :sessionId");
+        $query->execute(['sessionId' => $sessionId, 'userId' => $userId]);
+
+
+        return $query->fetchAll(PDO::FETCH_CLASS, 'CartItem');
+    }
+
+    function updateCartItem($userId, $sessionId, $productId, $quantity)
+    {
+        if ($quantity <= 0) {
+            $query = $this->pdo->prepare("DELETE FROM CartItem WHERE (userId=:userId or sessionId=:sessionId) AND productId = :productId");
+            $query->execute(['userId' => $userId, 'sessionId' => $sessionId, 'productId' => $productId]);
+            return;
+        }
+        $query = $this->pdo->prepare("SELECT * FROM CartItem  WHERE (userId=:userId or sessionId=:sessionId) AND productId = :productId");
+        $query->execute(['userId' => $userId, 'sessionId' => $sessionId, 'productId' => $productId]);
+        if ($query->rowCount() == 0) {
+            $query = $this->pdo->prepare("INSERT INTO CartItem (productId, quantity, sessionId, userId) VALUES (:productId, :quantity, :sessionId, :userId)");
+            $query->execute(['userId' => $userId, 'sessionId' => $sessionId, 'productId' => $productId, 'quantity' => $quantity]);
+        } else {
+            $query = $this->pdo->prepare("UPDATE CartItem SET quantity = :quantity WHERE (userId=:userId or sessionId=:sessionId) AND productId = :productId");
+            $query->execute(['userId' => $userId, 'sessionId' => $sessionId, 'productId' => $productId, 'quantity' => $quantity]);
+        }
     }
 }

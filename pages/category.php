@@ -8,6 +8,8 @@ require_once("Models/Database.php");
 
 $dbContext = new Database();
 $catName = $_GET['catname'] ?? "";
+$userId = null;
+$session_id = null;
 
 $header = $catName;
 if ($catName == "") {
@@ -34,7 +36,7 @@ if ($catName == "") {
 
 <body>
     <!-- Navigation-->
-    <?php Nav(); ?>
+    <?php Nav($dbContext, $session_id, $userId); ?>
 
 
     <!-- Header-->

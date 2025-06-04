@@ -5,6 +5,8 @@ require_once("components/Footer.php");
 require_once("components/Headern.php");
 require_once("Models/Database.php");
 
+$userId = null;
+$session_id = null;
 $id = $_GET['id'];
 $dbContext = new Database();
 $product = $dbContext->getProduct($id);
@@ -25,7 +27,7 @@ $product = $dbContext->getProduct($id);
 </head>
 
 <body>
-    <?php Nav(); ?>
+    <?php Nav($dbContext, $session_id, $userId); ?>
 
     <?php
     $product = null;

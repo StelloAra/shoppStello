@@ -5,8 +5,14 @@ require_once("components/Nav.php");
 require_once("components/Headern.php");
 require_once("pages/function/SingleProduct.php");
 require_once("Models/Database.php");
+require_once("Models/Cart.php");
+require_once("pages/removeFromCart.php");
+
+$userId = null;
+$session_id = null;
 
 $dbContext = new Database();
+$cart = new Cart($dbContext, $session_id, $userId);
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +34,7 @@ $dbContext = new Database();
 
 <body>
     <!-- Navigation-->
-    <?php Nav(); ?>
+    <?php Nav($dbContext, $session_id, $userId); ?>
 
 
     <!-- Header-->

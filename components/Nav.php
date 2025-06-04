@@ -1,7 +1,12 @@
 <?php
-function Nav()
+require_once("Models/Cart.php");
+
+function Nav($dbContext, $session_id, $userId)
 {
+
+
     $q = $_GET['q'] ?? "";
+    $cart = new Cart($dbContext, $session_id, $userId);
 ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,11 +39,12 @@ function Nav()
 
 
                 <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
+                    <a class="btn btn-outline-dark" href="/viewCart">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
+                        <span id="cartCount" class="badge bg-dark text-white ms-1 rounded-pill">
+                            <?php echo $cart->getItemsCount() ?></span>
+                    </a>
                 </form>
             </div>
         </div>

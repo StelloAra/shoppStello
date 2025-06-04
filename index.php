@@ -30,5 +30,17 @@ $router->addRoute('/showoneproduct', function () {
 $router->addRoute('/search', function () {
     require_once(__DIR__ . '/pages/search.php');
 });
+$router->addRoute('/removeFromCart', function () {
+    require_once(__DIR__ . '/pages/removeFromCart.php');
+});
+$router->addRoute('/addToCart', function () {
+    require_once(__DIR__ . '/pages/addToCart.php');
+});
+$router->addRoute('/viewCart', function () {
+    require_once(__DIR__ . '/pages/viewCart.php');
+});
+$router->addRoute('/product', function () {
+    require_once(__DIR__ . '/Pages/viewproduct.php');
+});
 
 $router->dispatch();

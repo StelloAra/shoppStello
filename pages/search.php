@@ -8,7 +8,8 @@ require_once("Utils/SearchEngine.php");
 require_once("components/Nav.php");
 require_once("components/Headern.php");
 
-
+$userId = null;
+$session_id = null;
 $dbContext = new Database();
 
 $q = $_GET['q'] ?? "";
@@ -38,7 +39,7 @@ $result = $searchEngine->search($q, $sortCol, $sortOrder, $pageNo, $pageSize);
 </head>
 
 <body>
-    <?php Nav(); ?>
+    <?php Nav($dbContext, $session_id, $userId); ?>
 
     <?php Headern("Stello's Shop" . "" . "<h5>Populära produkter</h5>"); ?>
 
