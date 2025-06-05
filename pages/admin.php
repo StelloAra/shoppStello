@@ -1,4 +1,6 @@
 <?php
+
+require_once("bootstrap.php");
 require_once("Models/Product.php");
 require_once("components/Footer.php");
 require_once("components/Nav.php");
@@ -8,6 +10,9 @@ require_once("Models/Database.php");
 $dbContext = new Database();
 $sortCol = $_GET['sortCol'] ?? "";
 $sortOrder = $_GET['sortOrder'] ?? "";
+$userId = null;
+$session_id = null;
+
 
 ?>
 

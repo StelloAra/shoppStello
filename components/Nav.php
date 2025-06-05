@@ -1,12 +1,14 @@
 <?php
 require_once("Models/Cart.php");
 
-function Nav($dbContext, $session_id, $userId)
+function Nav()
 {
 
 
     $q = $_GET['q'] ?? "";
-    $cart = new Cart($dbContext, $session_id, $userId);
+    global $dbContext, $session_id, $userId, $cart;
+
+    $cartCount = $cart->getItemsCount();
 ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,8 +35,15 @@ function Nav($dbContext, $session_id, $userId)
                             ?>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Create account</a></li>
+                    <?php
+                    if ($dbContext->getUsersDatabase()->getAuth()->isLoggedIn()) { ?>
+                        <li class="nav-item"><a class="nav-link" href="./user/logout">Logout</a></li>
+                    <?php } else { ?>
+                        <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/register">Create account</a></li>
+                    <?php
+                    }
+                    ?>
                 </ul>
 
 
@@ -43,7 +52,7 @@ function Nav($dbContext, $session_id, $userId)
                         <i class="bi-cart-fill me-1"></i>
                         Cart
                         <span id="cartCount" class="badge bg-dark text-white ms-1 rounded-pill">
-                            <?php echo $cart->getItemsCount() ?></span>
+                            <?php echo $cartCount; ?></span>
                     </a>
                 </form>
             </div>

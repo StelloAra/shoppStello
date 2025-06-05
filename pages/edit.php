@@ -1,4 +1,5 @@
 <?php
+require_once("bootstrap.php");
 require_once('Models/Product.php');
 require_once('components/Nav.php');
 require_once("components/Footer.php");
@@ -77,8 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <?php Footer(); ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
 
 </body>
 

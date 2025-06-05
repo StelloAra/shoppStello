@@ -1,4 +1,6 @@
 <?php
+
+require_once("bootstrap.php");
 require_once('Models/Product.php');
 require_once("components/Footer.php");
 require_once("components/Headern.php");
@@ -50,7 +52,4 @@ if ($confirmed == true) {
 
     <?php Footer(); ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
 </body>

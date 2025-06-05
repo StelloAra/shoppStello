@@ -34,7 +34,7 @@ $router->addRoute('/removeFromCart', function () {
     require_once(__DIR__ . '/pages/removeFromCart.php');
 });
 $router->addRoute('/addToCart', function () {
-    require_once(__DIR__ . '/pages/addToCart.php');
+    require_once(__DIR__ . '/ApiCode/cart.php');
 });
 $router->addRoute('/viewCart', function () {
     require_once(__DIR__ . '/pages/viewCart.php');

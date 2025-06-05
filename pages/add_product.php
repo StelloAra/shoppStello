@@ -1,4 +1,5 @@
 <?php
+require_once("bootstrap.php");
 require_once('Models/Product.php');
 require_once('components/Nav.php');
 require_once("components/Footer.php");
@@ -49,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </section>
+    <?php Footer(); ?>
+
 
 </body>
 

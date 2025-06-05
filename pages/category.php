@@ -1,4 +1,6 @@
 <?php
+
+require_once("bootstrap.php");
 require_once("Models/Product.php");
 require_once("components/Footer.php");
 require_once("components/Nav.php");
@@ -36,7 +38,7 @@ if ($catName == "") {
 
 <body>
     <!-- Navigation-->
-    <?php Nav($dbContext, $session_id, $userId); ?>
+    <?php Nav(); ?>
 
 
     <!-- Header-->

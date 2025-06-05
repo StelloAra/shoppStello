@@ -68,7 +68,6 @@ class Cart
             $count += $item->quantity;
         }
         return $count;
-        //return count($this->cartItems);
     }
 
     public function getTotalPrice()

@@ -1,7 +1,43 @@
-/*!
-* Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
+function addToCart(
+  productId,
+  updateCartItemsTable = false,
+  price = 0,
+  title = ""
+) {
+  // Simulate adding to cart
+  console.log(`Product ${productId} added to cart`);
+
+  fetch(`/addToCart?productId=${productId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    })
+    .then((data) => {
+      console.log("Product added to cart:", data);
+      document.getElementById("cartCount").innerText = data.cartCount;
+      console.log(data.bestTeam);
+      if (updateCartItemsTable) {
+        const cartItemsTable = document.getElementById("cartItemsTable");
+        cartItemsTable.innerHTML = ""; // Clear existing items
+        data.cart.forEach((item) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${item.productName}</td><td>${item.quantity}</td><td>${item.productPrice}</td><td>${item.rowPrice}</td><td><a href="javascript:addToCart(${item.productId},  true,${item.productPrice},'${item.productName})'" class="btn btn-info">PLUS JS</a></td>`;
+          cartItemsTable.appendChild(row);
+        });
+        document.getElementById("totalPrice").innerText = data.cartTotal;
+      }
+      // Optionally update the UI or show a success message
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+      // Optionally show an error message to the user
+    });
+}

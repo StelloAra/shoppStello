@@ -1,4 +1,5 @@
 <?php
+require_once("bootstrap.php");
 require_once('Models/Product.php');
 require_once('components/Nav.php');
 require_once("components/Footer.php");
@@ -27,7 +28,7 @@ $product = $dbContext->getProduct($id);
 </head>
 
 <body>
-    <?php Nav($dbContext, $session_id, $userId); ?>
+    <?php Nav(); ?>
 
     <?php
     $product = null;

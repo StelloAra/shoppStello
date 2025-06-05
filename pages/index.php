@@ -1,4 +1,6 @@
 <?php
+
+require_once("bootstrap.php");
 require_once("Models/Product.php");
 require_once("components/Footer.php");
 require_once("components/Nav.php");
@@ -12,7 +14,7 @@ $userId = null;
 $session_id = null;
 
 $dbContext = new Database();
-$cart = new Cart($dbContext, $session_id, $userId);
+$cart = new Cart($dbContext, $session_id, $userId, $cart);
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +36,7 @@ $cart = new Cart($dbContext, $session_id, $userId);
 
 <body>
     <!-- Navigation-->
-    <?php Nav($dbContext, $session_id, $userId); ?>
+    <?php Nav($dbContext, $session_id, $userId, $cart); ?>
 
 
     <!-- Header-->
