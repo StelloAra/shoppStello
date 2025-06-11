@@ -40,13 +40,25 @@ $router->addRoute('/viewCart', function () {
     require_once(__DIR__ . '/pages/viewCart.php');
 });
 $router->addRoute('/product', function () {
-    require_once(__DIR__ . '/Pages/viewproduct.php');
+    require_once(__DIR__ . '/pages/viewproduct.php');
 });
 $router->addRoute('/checkout', function () {
-    require_once(__DIR__ . '/Pages/checkout.php');
+    require_once(__DIR__ . '/pages/checkout.php');
 });
 $router->addRoute('/checkoutsuccess', function () {
-    require_once(__DIR__ . '/Pages/checkoutsuccess.php');
+    require_once(__DIR__ . '/pages/checkoutsuccess.php');
+});
+$router->addRoute('/user/login', function () {
+    require_once(__DIR__ . '/pages/user/login.php');
+});
+$router->addRoute('/user/logout', function () {
+    require_once(__DIR__ . '/pages/user/logout.php');
+});
+$router->addRoute('/user/register', function () {
+    require_once(__DIR__ . '/pages/user/register.php');
+});
+$router->addRoute('/user/registerThanks', function () {
+    require_once(__DIR__ . '/pages/user/registerThanks.php');
 });
 
 

@@ -37,7 +37,7 @@ function Nav()
                     </li>
                     <?php
                     if ($dbContext->getUsersDatabase()->getAuth()->isLoggedIn()) { ?>
-                        <li class="nav-item"><a class="nav-link" href="./user/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/logout">Logout</a></li>
                     <?php } else { ?>
                         <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/register">Create account</a></li>

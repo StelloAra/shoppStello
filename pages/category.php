@@ -1,9 +1,9 @@
 <?php
 
 require_once("bootstrap.php");
+require_once("components/Nav.php");
 require_once("Models/Product.php");
 require_once("components/Footer.php");
-require_once("components/Nav.php");
 require_once("components/Headern.php");
 require_once("pages/function/SingleProduct.php");
 require_once("Models/Database.php");

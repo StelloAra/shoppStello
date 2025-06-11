@@ -170,4 +170,9 @@ class Database
             $query->execute(['userId' => $userId, 'sessionId' => $sessionId, 'productId' => $productId, 'quantity' => $quantity]);
         }
     }
+    function convertSessionToUser($session_id, $userId, $newSessionId)
+    {
+        $query = $this->pdo->prepare("UPDATE CartItem SET userId=:userId, sessionId=:newSessionId WHERE sessionId = :sessionId");
+        $query->execute(['sessionId' => $session_id, 'userId' => $userId, 'newSessionId' => $newSessionId]);
+    }
 }

@@ -1,4 +1,6 @@
 <?php
+require_once("bootstrap.php");
+require_once("components/Nav.php");
 require_once('Models/Product.php');
 require_once("components/Footer.php");
 require_once('Models/Database.php');
@@ -51,40 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/">3part Shoppen</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Kategorier</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <?php
-                            foreach ($dbContext->getAllCategories() as $cat) {
-                                echo "<li><a class='dropdown-item' href='#!'>$cat->name</a></li>";
-                            }
-                            ?>
-                            <li><a class="dropdown-item" href="#!">En cat</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Create account</a></li>
-                </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation-->
+    <?php Nav(); ?>
+
+
+    <!-- Header-->
+    <?php Headern("Logga In"); ?>
+
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <h1>Log in</h1>
@@ -104,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="password" class="form-control" name="password" value="">
                 </div>
                 <input type="submit" class="btn btn-primary" value="Login">
-                <a href="/register" class="btn btn-secondary">Register</a>
-                <a href="/forgot" class="btn btn-secondary">Forgot password</a>
+                <a href="/user/register" class="btn btn-secondary">Register</a>
+                <a href="/user/forgot" class="btn btn-secondary">Forgot password</a>
             </form>
 
 
@@ -117,10 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <?php Footer(); ?>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+
 
 </body>
 
