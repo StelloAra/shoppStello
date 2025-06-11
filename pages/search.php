@@ -1,4 +1,5 @@
 <?php
+require_once("bootstrap.php");
 require_once("Models/Product.php");
 require_once("components/Footer.php");
 require_once("Models/Database.php");
@@ -39,7 +40,7 @@ $result = $searchEngine->search($q, $sortCol, $sortOrder, $pageNo, $pageSize);
 </head>
 
 <body>
-    <?php Nav($dbContext, $session_id, $userId); ?>
+    <?php Nav(); ?>
 
     <?php Headern("Stello's Shop" . "" . "<h5>Populära produkter</h5>"); ?>
 

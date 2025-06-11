@@ -11,7 +11,6 @@ require_once("components/Footer.php");
 require_once("components/Nav.php");
 require_once("components/Headern.php");
 
-// Gör dessa globala
 global $dbContext, $session_id, $userId, $cart;
 
 $dbContext = new Database();

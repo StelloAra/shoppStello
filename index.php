@@ -42,5 +42,12 @@ $router->addRoute('/viewCart', function () {
 $router->addRoute('/product', function () {
     require_once(__DIR__ . '/Pages/viewproduct.php');
 });
+$router->addRoute('/checkout', function () {
+    require_once(__DIR__ . '/Pages/checkout.php');
+});
+$router->addRoute('/checkoutsuccess', function () {
+    require_once(__DIR__ . '/Pages/checkoutsuccess.php');
+});
+
 
 $router->dispatch();

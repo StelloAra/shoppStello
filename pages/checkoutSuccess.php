@@ -1,12 +1,22 @@
 <?php
+require_once("bootstrap.php");
 require_once('Models/Product.php');
 require_once("components/Footer.php");
 require_once('Models/Database.php');
-require_once("Utils/Validator.php");
+require_once("Models/Cart.php");
 
-$id = $_GET['id'];
 $dbContext = new Database();
-$product = $dbContext->getProduct($id); // TODO felhantering om inget produkt
+$userId = null;
+$session_id = null;
+
+if ($dbContext->getUsersDatabase()->getAuth()->isLoggedIn()) {
+    $userId = $dbContext->getUsersDatabase()->getAuth()->getUserId();
+}
+//$cart = $dbContext->getCartByUser($userId);
+$session_id = session_id();
+
+$cart = new Cart($dbContext, $session_id, $userId);
+$cart->clearCart();
 
 ?>
 
@@ -27,6 +37,7 @@ $product = $dbContext->getProduct($id); // TODO felhantering om inget produkt
             'debug_mode': true
         });
     </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
@@ -41,24 +52,46 @@ $product = $dbContext->getProduct($id); // TODO felhantering om inget produkt
 </head>
 
 <body>
+    <?php
+
+    $googleItems = [];
+    foreach ($cart->getItems() as $cartitem) {
+        array_push($googleItems, [
+
+            "quantity" => $cartitem->quantity,
+            "price" => $cartitem->price,
+            "item_id" => $cartitem->id,
+            "item_name" => $cartitem->productName,
+        ]);
+    }
+
+    ?>
 
     <script>
-        gtag("event", "view_item", {
+        gtag("event", "purchase", {
+            transaction_id: Math.floor(Math.random() * 99999999),
             currency: "SEK",
-            value: <?php echo $product->price; ?>,
-            items: [{
-                item_id: "<?php echo $product->id; ?>",
-                item_name: "<?php echo $product->title; ?>",
-                price: <?php echo $product->price; ?>,
-                quantity: 1
-            }]
+            value: <?php echo $cart->getTotalPrice(); ?>,
+            items: [
+                <?php echo json_encode($googleItems); ?>
+            ]
         });
     </script>
 
+    <?php Nav(); ?>
+
+
+
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
+            <h1>Tack</h1>
+            <p>Tack för ditt köp!</p>
 
-            <h1><?php echo $product->title;  ?></h1>
+            // TODO CLEAR Cart
+            // TODO webhook och lagra i databas = order?
+
+
+
 
         </div>
     </section>
@@ -66,6 +99,7 @@ $product = $dbContext->getProduct($id); // TODO felhantering om inget produkt
 
 
     <?php Footer(); ?>
+
 
 </body>
 

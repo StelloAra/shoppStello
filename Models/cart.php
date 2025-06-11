@@ -1,4 +1,5 @@
 <?php
+require_once("bootstrap.php");
 
 class Cart
 {
@@ -84,9 +85,25 @@ class Cart
     {
         return $this->cartItems;
     }
-
     public function clearCart()
     {
+        //Tömmer lokalt
         $this->cartItems = [];
+
+        //Tömmer från databasen
+        if ($this->userId !== null) {
+            $query = "DELETE FROM CartItem WHERE sessionId = :sessionId OR userId = :userId";
+            $stmt = $this->dbContext->pdo->prepare($query);
+            $stmt->execute([
+                'sessionId' => $this->session_id,
+                'userId' => $this->userId
+            ]);
+        } else {
+            $query = "DELETE FROM CartItem WHERE sessionId = :sessionId";
+            $stmt = $this->dbContext->pdo->prepare($query);
+            $stmt->execute([
+                'sessionId' => $this->session_id
+            ]);
+        }
     }
 }
