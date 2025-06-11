@@ -36,11 +36,11 @@ $cart = new Cart($dbContext, $session_id, $userId, $cart);
 
 <body>
     <!-- Navigation-->
-    <?php Nav($dbContext, $session_id, $userId, $cart); ?>
+    <?php Nav(); ?>
 
 
     <!-- Header-->
-    <?php Headern("Stello's Shop" . "" . "<h5>Populära produkter</h5>"); ?>
+    <?php Headern("Stello's Shop" . "" . "<h5>Populära produkter</h5>", $dbContext); ?>
 
     <!-- Section-->
     <section class="py-5">

@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <!-- Header-->
-    <?php Headern("Logga In"); ?>
+    <?php Headern("Logga In", $dbContext); ?>
 
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">

@@ -42,7 +42,7 @@ if ($catName == "") {
 
 
     <!-- Header-->
-    <?php Headern($header); ?>
+    <?php Headern($header, $dbContext); ?>
 
     <!-- Section-->
     <section class="py-5">
