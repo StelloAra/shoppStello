@@ -15,7 +15,7 @@ function Nav()
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" style="font-style: italic; color:darkgreen" href="/">Stello's Shop</a>
             <form action="/search" method="GET">
-                <input type="text" name="q" value="<?php echo $q; ?>" placeholder="Search" class="form-control">
+                <input type="text" name="q" value="" placeholder="Search" class="form-control">
             </form>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
