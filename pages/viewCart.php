@@ -19,7 +19,7 @@ if ($dbContext->getUsersDatabase()->getAuth()->isLoggedIn()) {
 //$cart = $dbContext->getCartByUser($userId);
 $session_id = session_id();
 
-$cart = new Cart($dbContext, $session_id, $userId, $cart);
+$cart = new Cart($dbContext, $session_id, $userId,);
 
 
 
@@ -113,7 +113,7 @@ $cart = new Cart($dbContext, $session_id, $userId, $cart);
     <?php Nav(); ?>
 
     <!-- Header-->
-    <?php Headern("<h3>Din Cart</h3>"); ?>
+    <?php Headern("<h3>Din Cart</h3> ", $dbContext); ?>
 
     <!-- Section-->
     <section class="py-5">
