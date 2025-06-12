@@ -37,7 +37,7 @@ if ($confirmed == true) {
 
 <body>
     <?php Nav(); ?>
-    <?php Headern("Delete"); ?>
+    <?php Headern("Delete", $dbContext); ?>
 
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">

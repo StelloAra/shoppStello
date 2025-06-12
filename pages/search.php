@@ -42,7 +42,7 @@ $result = $searchEngine->search($q, $sortCol, $sortOrder, $pageNo, $pageSize);
 <body>
     <?php Nav(); ?>
 
-    <?php Headern("Stello's Shop" . "" . "<h5>Populära produkter</h5>"); ?>
+    <?php Headern("Stello's Shop" . "" . "<h5>Populära produkter</h5>", $dbContext); ?>
 
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5 d-flex gap-3">

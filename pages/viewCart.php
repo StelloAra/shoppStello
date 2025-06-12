@@ -148,11 +148,12 @@ $cart = new Cart($dbContext, $session_id, $userId,);
                                     <?php echo $item->rowPrice; ?>
                                 </td>
                                 <td>
-                                    <a href="javascript:addToCart(<?php echo $item->productId;  ?>, true)" class="btn btn-info">PLUS JS</a>
+                                    <!--    <a href="javascript:addToCart(<?php echo $item->productId;  ?>, true)" class="btn btn-info">+JS</a>
+                                    <a href="javascript:removeFromCart(<?php echo $item->productId;  ?>, true)" class="btn btn-info">-JS</a> -->
 
-                                    <a href="/addToCart?productId=<?php echo $item->productId ?>&fromPage=<?php echo urlencode((empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>" class="btn btn-primary">+</a>
-                                    <a href="/removeFromCart?productId=<?php echo $item->productId ?>&fromPage=<?php echo urlencode((empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>" class="btn btn-danger">-</a>
-                                    <a href="/removeFromCart?removeCount=<?php echo $item->quantity ?>&productId=<?php echo $item->productId ?>&fromPage=<?php echo urlencode((empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>" class="btn btn-danger">DELETE ALL</a>
+                                    <a href="/addToCart?productId=<?php echo $item->productId ?>&fromPage=<?php echo urlencode((empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>" class="btn btn-secundary bg-gradient-custom">+</a>
+                                    <a href="/removeFromCart?productId=<?php echo $item->productId ?>&fromPage=<?php echo urlencode((empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>" class="btn btn-secundary bg-gradient-custom">-</a>
+                                    <a href="/removeFromCart?removeCount=<?php echo $item->quantity ?>&productId=<?php echo $item->productId ?>&fromPage=<?php echo urlencode((empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>" class="btn btn-secundary bg-gradient-custom">X</a>
                                 </td>
                             </tr>
                         <?php
@@ -163,7 +164,7 @@ $cart = new Cart($dbContext, $session_id, $userId,);
                             <td colspan="3"></td>
                             <td id="totalPrice"><?php echo $cart->getTotalPrice(); ?></td>
                             <td>
-                                <a href="/checkout" onclick="onCheckout()" class="btn btn-success">Checkout</a>
+                                <a href="/checkout" onclick="onCheckout()" class="btn btn-secundary bg-gradient-custom">Checkout</a>
                             </td>
                         </tr>
                     </tfoot>

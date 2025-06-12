@@ -32,7 +32,7 @@ $session_id = null;
 
 <body>
     <?php Nav(); ?>
-    <?php Headern("Admin"); ?>
+    <?php Headern("Admin", $dbContext); ?>
 
     <section class="py-5">
         <div>

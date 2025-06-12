@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 require_once("utils/router.php");
 require_once("vendor/autoload.php");
 
@@ -32,6 +34,9 @@ $router->addRoute('/search', function () {
 });
 $router->addRoute('/removeFromCart', function () {
     require_once(__DIR__ . '/pages/removeFromCart.php');
+});
+$router->addRoute('/addToCart', function () {
+    require_once(__DIR__ . '/pages/addToCart.php');
 });
 $router->addRoute('/addToCart', function () {
     require_once(__DIR__ . '/ApiCode/cart.php');

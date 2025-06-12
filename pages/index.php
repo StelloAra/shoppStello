@@ -14,7 +14,7 @@ $userId = null;
 $session_id = null;
 
 $dbContext = new Database();
-$cart = new Cart($dbContext, $session_id, $userId, $cart);
+$cart = new Cart($dbContext, $session_id, $userId);
 ?>
 
 <!DOCTYPE html>
