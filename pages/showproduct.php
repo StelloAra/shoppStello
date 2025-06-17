@@ -54,13 +54,9 @@ $product = $dbContext->getProduct($id);
                         <div class="fs-5 mb-5">
                             <span style="color:darkcyan">$<?php echo $product->price; ?>.00</span>
                         </div>
-                        <form method="post" action="addToCart.php">
-                            <input type="hidden" name="product_id" value="<?php echo $product->id; ?>">
-                            <button class="btn btn-outline-light flex-shrink-0" style="color:darkcyan" type="submit">
-                                <i class="bi-cart-fill me-1"></i>
-                                Lägg i varukorg
-                            </button>
-                        </form>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark bg-gradient-custom mt-auto" href="javascript:addToCart(<?php echo $product->id; ?>)">Add to cart</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
